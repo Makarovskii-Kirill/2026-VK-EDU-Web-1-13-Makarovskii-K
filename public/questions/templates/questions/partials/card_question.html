@@ -1,0 +1,32 @@
+<div class="question">
+    <div>
+        <div class="question-image">
+            avatar
+        </div>
+        <div class="likes-box">
+            <div class="likes-number">5</div>
+            <div class="triangle-buttons">
+                <button class="triangle-up" aria-label="Вверх"></button>
+                <button class="triangle-down" aria-label="Вниз"></button>
+            </div>                                
+        </div>
+    </div>
+    <div>
+        <div class="question-title"> 
+                <a href="#" class="my-url">{{ question.title }}</a>
+            <p class="question-text">
+                {{ question.text }}
+            </p>
+        </div>
+        <div class="bottom-info">
+            <div>
+                <a href="#" class="my-url">answer(3)</a>
+            </div>
+            <div>
+                Tags: <a href="#" class="my-url">black-jack </a>
+                
+                <a href="{% url 'questions:tag' %}" class="my-url"> bender</a>
+            </div>
+        </div>
+    </div>
+</div>

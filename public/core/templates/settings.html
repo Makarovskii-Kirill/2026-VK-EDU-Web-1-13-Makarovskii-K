@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block user %}
+    {% include 'questions/partials/user_info.html' %}
+{% endblock %}
+        
+
+{% block content %}
+    <div class="question-nav">
+        <h1>Settings: Dr. Pepper</h1>
+    </div>
+    <div class="your-question-structure">
+        <div class="your-text-line">
+            <div class="label">Login</div>
+            <input type="text" class="your-question-title" placeholder="dr_pepper"></input>
+        </div>
+        
+        <div class="your-text-line">
+            <div class="label">Email</div>
+            <input type="text" class="your-question-title" placeholder="dr.pepper@mail.ru"></input>
+        </div>
+        
+        <div class="your-text-line">
+            <div class="label">NickName</div>
+            <input type="text" class="your-question-title" placeholder="Dr. Pepper"></input>
+        </div>
+
+        <div class="your-text-line">
+            <div class="label">Upload avatar</div>
+            <div class="question-image" style="margin: 0;">
+                avatar
+            </div>                    
+        </div>
+
+        <div class="your-text-line">
+            <div class="label"></div>
+            <div>
+                <div class="auth-buttons">
+                    <a class="btn-template" href="#">c:\avatar.jpg</a>
+                    <a class="btn-template" href="#">choose</a>  
+                </div>
+            </div>
+        </div>
+        
+        <div class="your-text-line">
+            <div class="label"></div>
+            <button class="your-question-button">SAVE</button>
+        </div>
+    </div>
+{% endblock %}

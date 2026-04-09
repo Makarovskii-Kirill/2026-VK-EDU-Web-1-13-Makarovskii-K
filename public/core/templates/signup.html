@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block user %}
+    {% include 'questions/partials/user_reg.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="question-nav">
+        <h1>Registration</h1>
+    </div>
+    <div style="color: brown;">
+        <h4>Sorry, this email address already registered!</h4>
+    </div>
+    <div class="your-question-structure">
+        <div class="your-text-line">
+            <div class="label">Login</div>
+            <input type="text" class="your-question-title" placeholder="dr_pepper"></input>
+        </div>
+        
+        <div class="your-text-line">
+            <div class="label">Email</div>
+            <input type="text" class="your-question-title" placeholder="dr.pepper@mail.ru"></input>
+        </div>
+        
+        <div class="your-text-line">
+            <div class="label">NickName</div>
+            <input type="text" class="your-question-title" placeholder="Dr. Pepper"></input>
+        </div>
+
+        <div class="your-text-line">
+            <div class="label">Password</div>
+            <input type="text" class="your-question-title" placeholder="*********"></input>
+        </div>
+
+        <div class="your-text-line">
+            <div class="label">Repeat password</div>
+            <input type="text" class="your-question-title" placeholder="*********"></input>
+        </div>
+
+        <div class="your-text-line">
+            <div class="label">Upload avatar</div>
+            <div>
+                <div class="auth-buttons">
+                    <a class="btn-template" href="#">c:\avatar.jpg</a>
+                    <a class="btn-template" href="#">choose</a>  
+                </div>
+            </div>
+        </div>
+
+
+        
+        <div class="your-text-line">
+            <div class="label"></div>
+            <button class="your-question-button">REGISTER!</button>
+        </div>
+        
+    </div>
+    
+{% endblock %}

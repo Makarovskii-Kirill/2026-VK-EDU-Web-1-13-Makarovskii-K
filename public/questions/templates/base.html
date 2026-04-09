@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -7,65 +9,32 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="static/css/style.css">
-    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 </head>
 <body>
     <header>
-        <div class="navbar">
+        <nav class="navbar">
             <p class="comfortaa-title">AskPupkin</p>
             <div class="search-container">
                 <input type="text" class="search-input" placeholder="Поиск...">
                 <button class="search-button">Найти</button>
             </div>
             <div class="user-info">
-                <div class="user-section">
-                    <div class="auth-buttons">
-                        <a class="btn-template" href="#">log in</a>
-                        <a class="btn-template" href="#">register</a>  
-                    </div>
-                    
-                </div>
+                {% block user %}
+                {% endblock %}
             </div>
             
-        </div>
+        </nav>
     </header>
-
     <main>
         <div class="content">
+
             <div class="content-left">
-                <div class="question-nav">
-                    <h1>Log In</h1>
-                </div>
-                <div style="color: brown;">
-                    <h4>Sorry, wrong password!</h4>
-                </div>
-                <div class="your-question-structure">
-                    <div class="your-text-line">
-                        <div class="label">Login</div>
-                        <input type="text" class="your-question-title" placeholder="Enter your login here"></input>
-                    </div>
-                    
-                    <div class="your-text-line">
-                        <div class="label">Password</div>
-                        <input type="text" class="your-question-title" placeholder="*********"></input>
-                    </div>
-                    
+                {% block content %}
+                {% endblock %}
+            </div>
 
-                    
-                    <div class="your-text-line">
-                        <div class="label"></div>
-                        <button class="your-question-button">Log in!</button>
-                    </div>
-
-                    <div class="your-text-line">
-                        <div class="label"></div>
-                        <a class="my-url">create new account</a>
-                    </div>
-
-                    
-                </div>
-            </div>    
             <div class="content-right">
                 <div>
                     <h1> Popular Tags</h1>
@@ -90,10 +59,12 @@
 
                 </div>
             </div>
-        </div>
     
+        </div>        
     </main>
     
-</body>
 
+    <footer style="background-color: #eeebd9; width: 100%; height: 50px;"></footer>
+    
+</body>
 </html>

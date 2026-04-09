@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block user %}
+    {% include 'questions/partials/user_info.html' %}
+{% endblock %}
+        
+
+{% block content %}
+
+<nav class="question-nav">
+    <h1>Hot Questions</h1>
+    <a class="my-url" href="{% url 'questions:home' %}">New Questions</a>
+</nav>
+
+{% for question in questions %}
+    {% include 'questions/partials/card_question.html' %}
+{% endfor %}
+
+    {% include 'questions/partials/pagination.html' %}
+
+{% endblock %}

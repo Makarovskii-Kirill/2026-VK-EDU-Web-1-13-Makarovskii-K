@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block user %}
+    <div class="user-section">
+        <div class="auth-buttons">
+            <a class="btn-template" href="#">log in</a>
+            <a class="btn-template" href="#">register</a>  
+        </div>
+    </div>
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="question-nav">
+        <h1>New Question</h1>
+    </div>
+    <div class="your-question-structure">
+        <div class="your-text-line">
+            <div class="label">Title</div>
+            <textarea type="text" class="your-question-title" placeholder="How to build a moon park?"></textarea>
+        </div>
+        
+        <div class="your-text-line">
+            <div class="label">Text</div>
+            <textarea type="text" class="your-question-text" placeholder="Really, how? Have no idea about it"></textarea>
+        </div>
+        
+        <div class="your-text-line">
+            <div class="label">Tags</div>
+            <textarea type="text" class="your-question-tags" placeholder="moon, park, puzzle"></textarea>
+        </div>
+        
+        <div class="your-text-line">
+            <div class="label"></div>
+            <button class="your-question-button">ASK!</button>
+        </div>
+        
+    </div>
+{% endblock %}

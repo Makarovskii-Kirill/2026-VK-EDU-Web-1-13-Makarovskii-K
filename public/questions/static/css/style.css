@@ -164,6 +164,7 @@ header {
     align-items: center;
     justify-content: center;
     border-radius: 12px;
+    text-decoration: none;
 }
 
 .your-question-button {
@@ -171,6 +172,7 @@ header {
     border-radius: 30px;
     font-weight: 600;
     border: 2px solid #0c6317;
+    margin-left: 20px;
 }
 
 .btn-template:hover,
@@ -189,6 +191,7 @@ header {
     gap: 10px;
     justify-content: space-between;
     margin: 0 40px;
+    min-height: 80vh;
 }
 
 .content-left {

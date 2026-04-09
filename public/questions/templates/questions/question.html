@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block user %}
+    <div class="user-section">
+        <div class="auth-buttons">
+            <a class="btn-template" href="#">log in</a>
+            <a class="btn-template" href="#">register</a>  
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block content %}
+    <div class="question question-without-border">
+        <div>
+            <div class="question-image big-question-image">
+                avatar
+            </div>
+            <div class="likes-box">
+                <div class="likes-number">5</div>
+                <div class="triangle-buttons">
+                    <button class="triangle-up" aria-label="Вверх"></button>
+                    <button class="triangle-down" aria-label="Вниз"></button>
+                </div>                                
+            </div>
+        </div>
+        <div>
+            <div class="question-title"> 
+                    <h1>How to build a moon park ?</h1>
+                <p class="question-text">
+                    Lorem ipsum - dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+                </p>
+            </div>
+            <div class="bottom-info">
+                <div>
+                    <h4>
+                    Tags: <a href="#" class="my-url"> black-jack bender </a>
+                    </h4>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <hr>
+
+    {% for answer in answers %}
+    <div>
+        {% include 'questions/partials/card_answer.html' %}
+    </div>
+    {% endfor %}
+
+    {% include 'questions/partials/pagination.html' %}
+
+    <hr>
+    
+    <div class="reply">
+        <input type="text" placeholder="Enter your answer here..."> 
+        
+    </div>
+
+    <div>
+        <button class="your-question-button">ANSWER!</button>
+    </div>
+
+
+{% endblock %}
