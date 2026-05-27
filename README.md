@@ -3,3 +3,12 @@
 ## Makarovskii Kirill VK project
 
 ### ДЗ 1 - верстка всех страниц
+
+
+# AskPupkin
+
+Сайт вопросов и ответов. Учебный проект VK Education.
+
+## Запуск проекта
+
+...
