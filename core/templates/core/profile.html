@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+        
+
+{% block content %}
+    <div class="question-nav">
+        <h1>Settings: {{ user.username }}</h1>
+    </div>
+    
+    <form method="post" enctype="multipart/form-data" action="{% url 'core:profile' %}">
+        {% csrf_token %}
+        <div class="your-question-structure">
+            <div class="your-text-line">
+                <div class="label">{{ form.username.label }}</div>
+                {{ form.username }}
+            </div>
+            {% if form.username.errors %}
+                <div style="color: brown;">{{ form.username.errors }}</div>
+            {% endif %}
+            
+            <div class="your-text-line">
+                <div class="label">{{ form.email.label }}</div>
+                {{ form.email }}
+            </div>
+            {% if form.email.errors %}
+                <div style="color: brown;">{{ form.email.errors }}</div>
+            {% endif %}
+            
+            <div class="your-text-line">
+                <div class="label">{{ form.avatar.label }}</div>
+                {% if user.profile.avatar %}
+                    <img src="{{ user.profile.avatar.url }}" width="50" height="50" style="border-radius: 50%;">
+                {% endif %}
+                {{ form.avatar }}
+            </div>
+            {% if form.avatar.errors %}
+                <div style="color: brown;">{{ form.avatar.errors }}</div>
+            {% endif %}
+
+            <div class="your-text-line">
+                <div class="label">{{ form.bio.label }}</div>
+                {{ form.bio }}                 
+            </div>
+
+            <div class="your-text-line">
+                <div class="label">{{ form.location.label }}</div>
+                {{ form.location }}
+            </div>
+
+            <div class="your-text-line">
+                <div class="label">{{ form.birth_date.label }}</div>
+                {{ form.birth_date }}
+            </div>
+            
+            <div class="your-text-line">
+                <div class="label"></div>
+                <button type="submit" class="your-question-button">SAVE</button>
+            </div>
+        </div>
+    </form> 
+
+{% endblock %}

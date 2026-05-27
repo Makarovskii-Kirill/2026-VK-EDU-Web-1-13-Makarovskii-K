@@ -1,0 +1,53 @@
+{% load static %}
+
+<div class="question" >
+    <div>
+        <div class="question-image">
+            {% if question.author.profile.avatar %}
+                <img src="{{ question.author.profile.avatar.url }}" width="50" height="50" style="border-radius: 50%;">
+            {% else %}
+                <img src="{% static 'img/avatar-default.png' %}" width="50" height="50" style="border-radius: 50%;">
+            {% endif %}
+        </div>
+        <div class="likes-box">
+            <div class="likes-number" id="question-likes-{{ question.id }}">{{ question.likes_count }}</div>
+            <div class="triangle-buttons">
+                {% if user.is_authenticated %}
+                    <button class="triangle-up like-btn" 
+                            data-id="{{ question.id }}" 
+                            data-type="question" 
+                            data-action="like"
+                            aria-label="Лайк"></button>
+                    <button class="triangle-down like-btn" 
+                            data-id="{{ question.id }}" 
+                            data-type="question" 
+                            data-action="dislike"
+                            aria-label="Дизлайк"></button>
+                {% else %}
+                    <button class="triangle-up disabled" title="Войдите, чтобы поставить лайк"></button>
+                    <button class="triangle-down disabled" title="Войдите, чтобы поставить дизлайк"></button>
+                {% endif %}
+            </div>                                
+        </div>
+    </div>
+    <div>
+        <div class="question-title"> 
+                <a href="{% url 'questions:question' question.id %}" class="my-url">{{ question.title|truncatechars:20 }}</a>
+            <p class="question-text">
+                {{ question.content|truncatechars:70 }}
+            </p>
+        </div>
+        <div class="bottom-info">
+            <div>
+                <a href="{% url 'questions:question' question.id %}" class="my-url"> answers ({{ question.answers_count }}) </a>
+            </div>
+            <div>
+                Tags: 
+                {% for tag in question.tags.all %}
+                        <a href="{% url 'questions:tag' tag.slug %}" class="my-url">{{ tag.title }}</a>
+                        {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

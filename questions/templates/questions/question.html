@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+    <div class="question question-without-border">
+        <div>
+            <div class="question-image big-question-image">
+                <img src="{{ question.author.profile.avatar_url|default:'/static/img/default-avatar.png' }}" alt="avatar" width="80" height="80" style="border-radius: 50%;">
+            </div>
+            <div class="likes-box">
+                <div class="likes-number">{{ question.likes_count }}</div>
+                <div class="triangle-buttons">
+                    {% if user.is_authenticated %}
+                        <button class="triangle-up like-btn" 
+                                data-id="{{ question.id }}" 
+                                data-type="question" 
+                                data-action="like"
+                                aria-label="Лайк"></button>
+                        <button class="triangle-down like-btn" 
+                                data-id="{{ question.id }}" 
+                                data-type="question" 
+                                data-action="dislike"
+                                aria-label="Дизлайк"></button>
+                    {% else %}
+                        <button class="triangle-up disabled" 
+                                title="Войдите, чтобы поставить лайк"
+                                disabled></button>
+                        <button class="triangle-down disabled" 
+                                title="Войдите, чтобы поставить дизлайк"
+                                disabled></button>
+                    {% endif %}
+                </div>                                
+            </div>
+        </div>
+        <div>
+            <div class="question-title"> 
+                    <h1>{{ question.title }}</h1>
+                <p class="question-text">
+                    {{ question.content }}
+                </p>
+            </div>
+            <div class="bottom-info">
+                <div>
+                    <h4>
+                        Tags:
+                        {% for tag in question.tags.all %}
+                            <a href="{% url 'questions:tag' tag.slug %}" class="my-url">{{ tag.title }}</a>
+                        {% endfor %}
+
+                    </h4>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <hr>
+
+    {% if page_answer %}
+        {% for answer in page_answer %}
+            {% include 'questions/partials/card_answer.html' %}
+        {% endfor %}
+        {% include 'questions/partials/pagination.html' %}
+    {% else %}
+        <p class="empty-state">Пока нет ни одного ответа к этому вопросу.</p>
+    {% endif %}
+
+    <hr>
+    
+    {% if user.is_authenticated %}
+        <form method="post" action="{% url 'questions:question' question.id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="your-question-button">Ответить</button>
+        </form>
+    {% else %}
+        <p style="text-align: center;">
+            <a href="{% url 'core:login' %}?next={{ request.path }}">Войдите</a>, чтобы оставить ответ.
+        </p>
+    {% endif %}
+
+{% endblock %}

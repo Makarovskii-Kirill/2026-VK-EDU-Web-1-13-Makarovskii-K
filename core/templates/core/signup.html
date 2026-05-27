@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block user %}
+    {% include 'questions/partials/user_reg.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="question-nav">
+        <h1>Registration</h1>
+    </div>
+
+    <form method="post" action="{% url 'core:signup' %}">
+        {% csrf_token %}
+        <div class="your-question-structure">
+            {% for field in form %}
+                <div class="your-text-line">
+                    <div class="label">{{ field.label }}</div>
+                    {{ field }}
+                </div>
+                {% if field.errors %}
+                    <div style="color: brown;">{{ field.errors }}</div>
+                {% endif %}
+            {% endfor %}
+            
+
+            
+            <div class="your-text-line">
+                <div class="label"></div>
+                <button type="submit" class="your-question-button">REGISTER!</button>
+            </div>
+            
+        </div>
+    </form>
+{% endblock %}

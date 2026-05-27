@@ -1,0 +1,51 @@
+{% load static %}
+
+<div class="question" data-answer-id="{{ answer.id }}" id="answer-{{ answer.id }}">
+    <div>
+        <div class="question-image">
+            {% if answer.author.profile.avatar %}
+                <img src="{{ answer.author.profile.avatar.url }}" width="50" height="50" style="border-radius: 50%;">
+            {% else %}
+                <img src="{% static 'img/avatar-default.png' %}" width="50" height="50" style="border-radius: 50%;">
+            {% endif %}
+        </div>
+        <div class="likes-box">
+            <div class="likes-number" id="answer-likes-{{ answer.id }}">{{ answer.likes_count }}</div>
+            <div class="triangle-buttons">
+                {% if user.is_authenticated %}
+                    <button class="triangle-up" 
+                            data-id="{{ answer.id }}" 
+                            data-type="answer" 
+                            data-action="like"
+                            aria-label="Лайк"></button>
+                    <button class="triangle-down" 
+                            data-id="{{ answer.id }}" 
+                            data-type="answer" 
+                            data-action="dislike"
+                            aria-label="Дизлайк"></button>
+                {% else %}
+                    <button class="triangle-up disabled" title="Войдите, чтобы поставить лайк"></button>
+                    <button class="triangle-down disabled" title="Войдите, чтобы поставить дизлайк"></button>
+                {% endif %}
+            </div>                                
+        </div>
+    </div>
+    <div>
+        <div class="question-title"> 
+            <p class="question-text">
+                {{ answer.content|truncatechars:70 }}
+            </p>
+        </div>
+        <div class="bottom-info">
+            <div>
+                <h3>
+                    {% if answer.is_correct %}
+                        <span style="color: green; font-weight: bold;">✓ Correct answer</span>
+                    {% else %}
+                        <input type="checkbox" class="big-checkbox"> Correct!
+                    {% endif %}                
+                </h3>
+            </div>
+        </div>
+    </div>
+</div>

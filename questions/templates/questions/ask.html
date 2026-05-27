@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+    <div class="question-nav">
+        <h1>New Question</h1>
+    </div>
+    {% if not user.is_authenticated %}
+        <p style="color: brown; text-align: center; padding: 20px;">
+            Войдите, чтобы задать вопрос.
+            <a href="{% url 'core:login' %}?next={% url 'questions:ask' %}">Войти</a>
+        </p>
+    {% else %}
+
+        <form method="post" action="{% url 'questions:ask' %}">
+            {% csrf_token %}
+            <div class="your-question-structure">
+                {% for field in form %}
+                    <div class="your-text-line">
+                        <div class="label">{{ field.label }}</div>
+                        {{ field }}
+                    </div>
+                    {% if field.errors %}
+                        <div style="color: red; margin-left: 20px;">{{ field.errors }}</div>
+                    {% endif %}
+                {% endfor %}
+
+                <div class="your-text-line">
+                    <div class="label"></div>
+                    <button type="submit" class="your-question-button">ASK!</button>
+                </div>
+            </div>
+        </form>
+    {% endif %}
+{% endblock %}

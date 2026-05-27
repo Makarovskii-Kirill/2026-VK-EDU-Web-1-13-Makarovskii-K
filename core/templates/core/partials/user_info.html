@@ -1,0 +1,18 @@
+{% load static %}
+
+<div class="image-caption-box">
+    {% if user.profile.avatar %}
+        <img src="{{ user.profile.avatar.url }}" alt="Аватар" width="50" height="50" style="border-radius: 50%;">
+    {% else %}
+        <img src="{% static 'img/avatar-default.png' %}" alt="Аватар">
+    {% endif %}
+    <div class="caption">{{ user.username|truncatechars:8 }}</div>
+</div>
+<div class="user-section">
+    <span class="username">{{ user.username }}</span> 
+    <div class="auth-buttons">
+        <a class="btn-template" href="{% url 'core:profile' %}">settings</a>  
+        <a class="btn-template" href="{% url 'core:logout' %}">log out</a>
+    </div>
+    
+</div>

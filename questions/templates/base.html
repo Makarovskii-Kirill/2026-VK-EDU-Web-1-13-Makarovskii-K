@@ -1,0 +1,77 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AskPupkin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="icon" href="{% static 'web-app-manifest-512x512.png' %}" type="image/png">
+    <link rel="apple-touch-icon" href="{% static 'apple-touch-icon.png' %}">
+    
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="{% url 'questions:home' %}" class="comfortaa-title">AskPupkin</a>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Поиск...">
+                <button class="search-button">Найти</button>
+            </div>
+            <div class="user-info">
+                {% if user.is_authenticated %}
+                {% include 'core/partials/user_info.html' %}
+                {% else %}
+                {% include 'core/partials/user_reg.html' %}
+                {% endif %}
+            </div>
+            
+        </nav>
+    </header>
+    <main>
+        <div class="content">
+            
+            <div class="content-left">
+                {% block content %}
+                {% endblock %}
+            </div>
+            
+            <div class="content-right">
+                <div>
+                    <h1> Popular Tags</h1>
+                    <div class="tags-cloud">
+                        <a href="#" class="tag tag-medium">perl</a>
+                        <a href="#" class="tag tag-huge">python</a>
+                        <a href="#" class="tag tag-large">TechnoPark</a>
+                        <a href="#" class="tag tag-medium">MySQL</a>
+                        <a href="#" class="tag tag-medium">django</a>
+                        <a href="#" class="tag tag-small">Mail.Ru</a>
+                        <a href="#" class="tag tag-medium">Voloshin</a>
+                        <a href="#" class="tag tag-small">Firefox</a>
+                    </div>
+                </div>
+                <div>
+                    <h1>Best Members</h1>
+                    <a href="#" class="my-url list-members">Mr. Freeman</a>
+                    <a href="#" class="my-url list-members">Dr. House</a>
+                    <a href="#" class="my-url list-members">Bender</a>
+                    <a href="#" class="my-url list-members">Queen Victoria</a>
+                    <a href="#" class="my-url list-members">V. Pupkin</a>
+                    
+                </div>
+            </div>
+            
+        </div>        
+    </main>
+    
+    
+    <footer style="background-color: #eeebd9; width: 100%; height: 50px;"></footer>
+    
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

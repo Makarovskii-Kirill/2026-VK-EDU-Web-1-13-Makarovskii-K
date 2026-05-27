@@ -1,4 +1,61 @@
-node_modules/
-.DS_Store
-.idea/
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Virtual environment
+.venv/
+venv/
+ENV/
+env/
+
+# Django
+db.sqlite3
+*.log
+migrations/
+*.pyc
+
+# Docker
+*.pid
+
+# IDE
 .vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Static collected
+collected_static/
+staticfiles/
+
+# Environment variables
+.env
+.env.local
+EOF
+
+# БД
+*.sqlite3
+
+# Переменные окружения
+.env.local
+.env.docker
+
+# Исключение: пример остаётся в репозитории
+!.env.example
+
+# Медиа
+media/
+
+# Docker
+postgres_data/

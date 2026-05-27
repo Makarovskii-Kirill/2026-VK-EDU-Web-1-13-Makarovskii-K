@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+    <nav class="question-nav">
+        <h1>Tag: {{ tag.title }}</h1>
+    </nav>
+
+
+    {% if questions %}
+        {% for question in questions %}
+            {% include 'questions/partials/card_question.html' %}
+        {% endfor %}
+        {% include 'questions/partials/pagination.html' %}
+    {% else %}
+        <p class="empty-state">Пока нет вопросов с этим тегом.</p>
+    {% endif %}
+
+{% endblock %}

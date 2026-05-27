@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block user %}
+    {% include 'questions/partials/user_info.html' %}
+{% endblock %}
+        
+
+{% block content %}
+
+    <nav class="question-nav">
+        <h1>New Questions</h1>
+        <a class="my-url" href="{% url 'questions:hot' %}">Hot Questions</a>
+    </nav>
+
+    {% if questions %}
+        {% for question in questions %}
+            {% include 'questions/partials/card_question.html' %}
+        {% endfor %}
+        {% include 'questions/partials/pagination.html' %}
+    {% else %}
+        <p class="empty-state">Пока нет ни одного вопроса.</p>
+    {% endif %}
+
+{% endblock %}
