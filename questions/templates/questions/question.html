@@ -7,7 +7,7 @@
     <div class="question question-without-border">
         <div>
             <div class="question-image big-question-image">
-                <img src="{{ question.author.profile.avatar_url|default:'/static/img/default-avatar.png' }}" alt="avatar" width="80" height="80" style="border-radius: 50%;">
+                <img src="{{ question.author.profile.avatar_url|default:'/static/img/avatar-default.png' }}" alt="avatar" width="80" height="80" style="border-radius: 50%;">
             </div>
             <div class="likes-box">
                 <div class="likes-number">{{ question.likes_count }}</div>
@@ -58,14 +58,16 @@
 
     <hr>
 
-    {% if page_answer %}
-        {% for answer in page_answer %}
-            {% include 'questions/partials/card_answer.html' %}
-        {% endfor %}
-        {% include 'questions/partials/pagination.html' %}
-    {% else %}
-        <p class="empty-state">Пока нет ни одного ответа к этому вопросу.</p>
-    {% endif %}
+    <div class="answers-list" data-question-id="{{ question.id }}">
+        {% if page_answer %}
+            {% for answer in page_answer %}
+                {% include 'questions/partials/card_answer.html' %}
+            {% endfor %}
+            {% include 'questions/partials/pagination.html' %}
+        {% else %}
+            <p class="empty-state">Пока нет ни одного ответа к этому вопросу.</p>
+        {% endif %}
+    </div>
 
     <hr>
     

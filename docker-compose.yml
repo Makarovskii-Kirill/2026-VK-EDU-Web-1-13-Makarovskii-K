@@ -17,6 +17,14 @@ services:
       timeout: 5s
       retries: 5
 
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
@@ -32,6 +40,40 @@ services:
         condition: service_healthy
     restart: unless-stopped
 
+  celery:
+    build: .
+    command: celery -A application worker -l info
+    volumes:
+      - .:/app
+    env_file:
+      - .env.docker
+    depends_on:
+      - db
+      - redis
+    restart: unless-stopped
+
+  celery-beat:
+    build: .
+    command: celery -A application beat -l info --scheduler redbeat.RedBeatScheduler
+    volumes:
+      - .:/app
+    env_file:
+      - .env.docker
+    depends_on:
+      - db
+      - redis
+    restart: unless-stopped
+
+  centrifugo:
+    image: centrifugo/centrifugo:v5
+    volumes:
+      - ./centrifugo:/centrifugo
+    command: centrifugo -c /centrifugo/config.json
+    ports:
+      - "8001:8001"
+    restart: unless-stopped
+
 volumes:
   postgres_data:
   media_data:
+  redis_data:

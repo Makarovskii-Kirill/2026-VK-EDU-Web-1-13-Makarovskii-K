@@ -78,3 +78,11 @@ async function handleCorrectAnswer(answerId) {
         btn.addEventListener('click', () => handleCorrectAnswer(btn.dataset.answerId));
     });
 // });
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.tag').forEach(tag => {
+        const hue = Math.floor(Math.random() * 360);
+        // tag.style.backgroundColor = `hsl(${hue}, 70%, 85%)`;
+        tag.style.color = `hsl(${hue}, 80%, 35%)`;
+    });
+});

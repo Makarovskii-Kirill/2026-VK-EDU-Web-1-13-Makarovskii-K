@@ -13,12 +13,12 @@
             <div class="likes-number" id="answer-likes-{{ answer.id }}">{{ answer.likes_count }}</div>
             <div class="triangle-buttons">
                 {% if user.is_authenticated %}
-                    <button class="triangle-up" 
+                    <button class="triangle-up like-btn" 
                             data-id="{{ answer.id }}" 
                             data-type="answer" 
                             data-action="like"
                             aria-label="Лайк"></button>
-                    <button class="triangle-down" 
+                    <button class="triangle-down like-btn" 
                             data-id="{{ answer.id }}" 
                             data-type="answer" 
                             data-action="dislike"

@@ -12,4 +12,5 @@ urlpatterns = [
     path('ajax/like-question/', views.like_question, name='like_question'),
     path('ajax/like-answer/', views.like_answer, name='like_answer'),
     path('ajax/correct-answer/', views.correct_answer, name='correct_answer'),
+    path('centrifugo/token/', views.centrifugo_token, name='centrifugo_token'),
 ]
