@@ -17,7 +17,6 @@ fake = Faker('ru_RU')
 import re
 
 def translit_slugify(text):
-    """Транслитерация русского текста в латиницу для slug."""
     translit = {
         'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e',
         'ё': 'yo', 'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k',
@@ -97,7 +96,6 @@ class Command(BaseCommand):
 
 
     def _create_users(self, count):
-        """Создаёт пользователей пачками через bulk_create."""
         BATCH_SIZE = 1000
         users = []
 
@@ -184,7 +182,6 @@ class Command(BaseCommand):
         return Question.objects.all()[:count]
 
     def _link_questions_tags(self, question_ids, tag_ids):
-        """Связывает вопросы с тегами через промежуточную таблицу."""
         BATCH_SIZE = 5000
         through_model = Question.tags.through
         links = []
@@ -205,7 +202,6 @@ class Command(BaseCommand):
             through_model.objects.bulk_create(links, ignore_conflicts=True)
 
     def _create_answers(self, count, user_ids, question_ids):
-        """Создаёт ответы."""
         BATCH_SIZE = 1000
         answers = []
 
@@ -231,12 +227,10 @@ class Command(BaseCommand):
         return Answer.objects.all()[:count]
 
     def _create_question_likes(self, count, user_ids, question_ids):
-        """Создаёт лайки вопросов."""
         BATCH_SIZE = 5000
         likes = []
         used_pairs = set()
 
-        # Делим лайки поровну между вопросами и ответами
         likes_to_create = count // 2
 
         while len(likes) < likes_to_create:
@@ -264,7 +258,6 @@ class Command(BaseCommand):
             QuestionLike.objects.bulk_create(likes, ignore_conflicts=True)
 
     def _create_answer_likes(self, count, user_ids, answer_ids):
-        """Создаёт лайки ответов."""
         BATCH_SIZE = 5000
         likes = []
         used_pairs = set()
