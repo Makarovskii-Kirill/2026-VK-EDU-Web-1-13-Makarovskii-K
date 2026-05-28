@@ -12,6 +12,8 @@
 
 ### ДЗ 5 - AJAX-запросы
 
+### ДЗ 6 - Redis, Celery, Centrifugo
+
 
 # AskPupkin
 
